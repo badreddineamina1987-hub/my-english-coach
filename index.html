@@ -1419,8 +1419,26 @@ function showNudge(){
 </script>
 
 <style>
-body.no-ai [data-coach],body.no-ai [data-act="askLesson"],body.no-ai .card:has(#askq),body.no-ai [data-act="iWrite"],body.no-ai [data-act="iSpeak"],body.no-ai [data-act="checkWriting"],body.no-ai #learners,body.no-ai [data-learners-wrap]{display:none!important}
+body.no-ai [data-coach],body.no-ai [data-act="askLesson"],body.no-ai .card:has(#askq),body.no-ai [data-act="iWrite"],body.no-ai [data-act="iSpeak"],body.no-ai [data-act="checkWriting"]{display:none!important}
 body.no-ai .ai-note{display:block}
 .ai-note{display:none}
+#learners{display:none!important}
 </style>
+<script>
+/* Visitor counter (GoatCounter): private stats for the author + public total on the page */
+(function(){
+  var GC="https://myenglishcoachbadreddine.goatcounter.com";
+  var pill=document.getElementById("learners"); if(pill) pill.hidden=true;
+  function show(n){
+    var lc=document.getElementById("learnerCount"); if(lc) lc.textContent=n;
+    document.querySelectorAll("[data-learners]").forEach(function(e){e.textContent=n});
+    document.querySelectorAll("[data-learners-wrap]").forEach(function(e){e.hidden=false});
+    if(pill) pill.hidden=false;
+  }
+  fetch(GC+"/counter/TOTAL.json").then(function(r){return r.ok?r.json():null}).then(function(j){
+    if(!j) return; var n=j.count_unique||j.count; if(n&&/\d/.test(n)) show(String(n).trim());
+  }).catch(function(){});
+})();
+</script>
+<script data-goatcounter="https://myenglishcoachbadreddine.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body></html>
